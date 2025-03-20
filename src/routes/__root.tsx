@@ -248,7 +248,7 @@ function RootComponent() {
                         <Button
                           className="w-full bg-blue-600 hover:bg-blue-700 text-sm py-2"
                           onClick={() => {
-                            navigate({ to: "/" });
+                            navigate({ to: "/register" });
                             setIsMobileMenuOpen(false);
                           }}
                         >
