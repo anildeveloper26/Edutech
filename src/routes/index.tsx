@@ -103,7 +103,7 @@ function HomePage() {
       <section className="py-16 md:py-32 bg-gradient-to-b from-white to-gray-50 overflow-hidden">
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <motion.h2
-            className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-12 md:mb-20 text-gray-800 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-500 to-indigo-600"
+            className="text-3xl sm:text-4xl md:text-5xl font-bold text-center mb-10 md:mb-10 text-gray-800 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 via-purple-500 to-indigo-600"
             initial={{ opacity: 0, y: -30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}

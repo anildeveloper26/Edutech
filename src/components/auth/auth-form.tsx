@@ -1,107 +1,98 @@
-import { useState } from 'react';
-import { useNavigate } from '@tanstack/react-router';
-import { useForm } from 'react-hook-form';
-import { z } from 'zod';
-import { zodResolver } from '@hookform/resolvers/zod';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from '@/components/ui/form';
-import { useAuth } from '@/lib/auth';
-import { FadeIn } from '@/components/animations/fade-in';
+import {
+  MDBBtn,
+  MDBContainer,
+  MDBRow,
+  MDBCol,
+  MDBCard,
+  MDBCardBody,
+  MDBCardImage,
+  MDBInput,
+  MDBIcon,
+  MDBCheckbox,
+} from "mdb-react-ui-kit";
+import "mdb-react-ui-kit/dist/css/mdb.min.css";
 
-const formSchema = z.object({
-  email: z.string().email(),
-  password: z.string().min(6),
-});
-
-interface AuthFormProps {
-  type: 'login' | 'register';
-}
-
-export function AuthForm({ type }: AuthFormProps) {
-  const [isLoading, setIsLoading] = useState(false);
-  const navigate = useNavigate();
-  const { login } = useAuth();
-
-  const form = useForm<z.infer<typeof formSchema>>({
-    resolver: zodResolver(formSchema),
-    defaultValues: {
-      email: '',
-      password: '',
-    },
-  });
-
-  async function onSubmit(values: z.infer<typeof formSchema>) {
-    setIsLoading(true);
-    try {
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-      
-      // Mock user data
-      const user = {
-        id: '1',
-        email: values.email,
-        name: 'John Doe',
-        role: 'student' as const,
-      };
-      
-      login(user);
-      navigate({ to: '/dashboard' });
-    } catch (error) {
-      console.error(error);
-    } finally {
-      setIsLoading(false);
-    }
-  }
+export function SignUp() {
+  // Optional: Add form submission handler
+  const handleSubmit = (e:any) => {
+    e.preventDefault();
+    console.log("Form submitted");
+    // Add your signup logic here (e.g., API call)
+  };
 
   return (
-    <FadeIn>
-      <Card className="w-[400px]">
-        <CardHeader>
-          <CardTitle>{type === 'login' ? 'Login' : 'Create an Account'}</CardTitle>
-          <CardDescription>
-            {type === 'login'
-              ? 'Enter your credentials to access your account'
-              : 'Fill in the details below to create your account'}
-          </CardDescription>
-        </CardHeader>
-        <CardContent>
-          <Form {...form}>
-            <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-              <FormField
-                control={form.control}
-                name="email"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Email</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Enter your email" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
+    <MDBContainer fluid>
+      <MDBCard className="text-black m-5" style={{ borderRadius: "25px" }}>
+        <MDBCardBody>
+          <MDBRow>
+            <MDBCol
+              md="10"
+              lg="6"
+              className="order-2 order-lg-1 d-flex flex-column align-items-center"
+            >
+              <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">
+                Sign Up
+              </p>
+
+              <form onSubmit={handleSubmit} className="w-full max-w-md">
+                <div className="d-flex flex-row align-items-center mb-4">
+                  <MDBIcon fas icon="user" size="lg" className="me-3" />
+                  <MDBInput
+                    label="Your Name"
+                    id="form1"
+                    type="text"
+                    className="w-100"
+                  />
+                </div>
+
+                <div className="d-flex flex-row align-items-center mb-4">
+                  <MDBIcon fas icon="envelope" size="lg" className="me-3" />
+                  <MDBInput label="Your Email" id="form2" type="email" />
+                </div>
+
+                <div className="d-flex flex-row align-items-center mb-4">
+                  <MDBIcon fas icon="lock" size="lg" className="me-3" />
+                  <MDBInput label="Password" id="form3" type="password" />
+                </div>
+
+                <div className="d-flex flex-row align-items-center mb-4">
+                  <MDBIcon fas icon="key" size="lg" className="me-3" />
+                  <MDBInput
+                    label="Repeat your password"
+                    id="form4"
+                    type="password"
+                  />
+                </div>
+
+                <div className="mb-4">
+                  <MDBCheckbox
+                    name="flexCheck"
+                    value=""
+                    id="flexCheckDefault"
+                    label="Subscribe to our newsletter"
+                  />
+                </div>
+
+                <MDBBtn type="submit" className="mb-4" size="lg">
+                  Register
+                </MDBBtn>
+              </form>
+            </MDBCol>
+
+            <MDBCol
+              md="10"
+              lg="6"
+              className="order-1 order-lg-2 d-flex align-items-center"
+            >
+              <MDBCardImage
+                src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
+                fluid
+                alt="Registration illustration"
               />
-              <FormField
-                control={form.control}
-                name="password"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Password</FormLabel>
-                    <FormControl>
-                      <Input type="password" placeholder="Enter your password" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <Button type="submit" className="w-full" disabled={isLoading}>
-                {isLoading ? 'Loading...' : type === 'login' ? 'Login' : 'Create Account'}
-              </Button>
-            </form>
-          </Form>
-        </CardContent>
-      </Card>
-    </FadeIn>
+            </MDBCol>
+          </MDBRow>
+        </MDBCardBody>
+      </MDBCard>
+    </MDBContainer>
   );
 }
