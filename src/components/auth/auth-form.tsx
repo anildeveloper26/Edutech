@@ -14,7 +14,7 @@ import "mdb-react-ui-kit/dist/css/mdb.min.css";
 
 export function SignUp() {
   // Optional: Add form submission handler
-  const handleSubmit = (e:any) => {
+  const handleSubmit = (e: any) => {
     e.preventDefault();
     console.log("Form submitted");
     // Add your signup logic here (e.g., API call)
@@ -22,7 +22,11 @@ export function SignUp() {
 
   return (
     <MDBContainer fluid>
-      <MDBCard className="text-black m-5" style={{ borderRadius: "25px" }}>
+      <MDBCard
+        className="text-black m-1.5 md:m-5"
+        style={{ borderRadius: "25px" }}
+      >
+        {" "}
         <MDBCardBody>
           <MDBRow>
             <MDBCol
