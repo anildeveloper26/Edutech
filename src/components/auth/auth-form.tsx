@@ -35,20 +35,10 @@ export function SignUp() {
               className="order-2 order-lg-1 d-flex flex-column align-items-center"
             >
               <p className="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">
-                Sign Up
+                Sign In
               </p>
 
               <form onSubmit={handleSubmit} className="w-full max-w-md">
-                <div className="d-flex flex-row align-items-center mb-4">
-                  <MDBIcon fas icon="user" size="lg" className="me-3" />
-                  <MDBInput
-                    label="Your Name"
-                    id="form1"
-                    type="text"
-                    className="w-100"
-                  />
-                </div>
-
                 <div className="d-flex flex-row align-items-center mb-4">
                   <MDBIcon fas icon="envelope" size="lg" className="me-3" />
                   <MDBInput label="Your Email" id="form2" type="email" />
@@ -57,15 +47,6 @@ export function SignUp() {
                 <div className="d-flex flex-row align-items-center mb-4">
                   <MDBIcon fas icon="lock" size="lg" className="me-3" />
                   <MDBInput label="Password" id="form3" type="password" />
-                </div>
-
-                <div className="d-flex flex-row align-items-center mb-4">
-                  <MDBIcon fas icon="key" size="lg" className="me-3" />
-                  <MDBInput
-                    label="Repeat your password"
-                    id="form4"
-                    type="password"
-                  />
                 </div>
 
                 <div className="mb-4">
